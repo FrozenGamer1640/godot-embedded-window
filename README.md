@@ -11,6 +11,6 @@ The **Control Node Window** is a Node for creating control node-based windows in
 - **Canvas Layer / Viewport Independence:** Operates without utilizing any canvas layers.
 
 ## Usage:  
-To use the `ControlNodeWindow`, attach it as a child of a suitable control node. Add a compatible node like `ScrollContainer` or `TextEdit` as its child for optimal functionality.  
+To use the `control_node_window.tscn`, attach it as a child of a suitable control node. Add a compatible node like `ScrollContainer` or `TextEdit` as its child for optimal functionality.  
 
 <img src="addons/control_node_window/examples/showcase_small.gif" align="middle" width="300">
