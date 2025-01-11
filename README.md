@@ -15,4 +15,4 @@ To use the `control_node_window.tscn`, attach it as a child of a suitable contro
 
 <img src="addons/control_node_window/showcase/screenshot.JPG">
 
-<img src="addons/control_node_window/examples/showcase_small.gif" align="middle" width="300">
+![godot_control_node_window/addons/control_node_window/examples/showcase_small.gif](https://github.com/Snirpsi/godot_control_node_window/blob/main/addons/control_node_window/showcase/showcase_small.gif)
