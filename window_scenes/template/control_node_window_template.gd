@@ -6,39 +6,40 @@ extends Control
 class_name ControlNodeWindowTemplate
 
 ## When the window is closed its calling queue_free()
-@export 
+@export
 var delete_on_close:bool = false
 
 ## The location and size where the window wil popup
-@export 
+@export
 var popup_rect:Rect2 = Rect2(Vector2.ZERO,Vector2.ZERO)
 
 ## The name of the Window at the top Bar
 @export
 var window_name:String  #= "Window" #: set = set_window_name
 
-## put your window content (preferably in a ScrollContainer) as a child of the Window Node. 
+## put your window content (preferably in a ScrollContainer) as a child of the Window Node.
 ## This Variable will be set automaticaly.
-var window_content:Control 
+var window_content:Control
 
+@warning_ignore("shadowed_variable")
 func set_window_name(window_name:String):
 	#if not Engine.is_editor_hint():
 	%WinowName.text = window_name
 ######
-## Closes the window not if its pinne 
-## use force to close it anyways 
+## Closes the window not if its pinne
+## use force to close it anyways
 ########
 
 ## This is where the content will be placed
 @onready
 var content_placeholder:ColorRect = $VBoxContainer/HBoxContainer2/CenterPanel/MarginContainer/ContentPlaceholder
 
-# closes and pauses the window 
+# closes and pauses the window
 func close():
 	self.hide()
 	self.process_mode=Node.PROCESS_MODE_DISABLED
 
-# displays window 
+# displays window
 func popup():
 	self.process_mode=Node.PROCESS_MODE_INHERIT
 	self.show()
@@ -46,7 +47,7 @@ func popup():
 	self.position = popup_rect.position
 	self.size = popup_rect.size
 	#self.grab_focus()
-	
+
 	update_content_placement()
 
 
@@ -81,16 +82,16 @@ func update_content_placement():
 	#reset flag at end update_content_placement_first_call
 	# prevents infinite recursion !
 	call_deferred("__r_hellper_for_changing_variable_deferred")
-	
+
 
 func _update_content_placement_deferred():
 	if  (not __is_ready):
 		if not Engine.is_editor_hint():
 			#print("CONTROL WINDOW NOT READY!")
 			return
-		else: # in engine 
+		else: # in engine
 			content_placeholder =  $VBoxContainer/HBoxContainer2/CenterPanel/MarginContainer/ContentPlaceholder
-	
+
 	#print("content_placement_update")
 	if (self.get_children().size() < 1):
 		return
@@ -100,7 +101,7 @@ func _update_content_placement_deferred():
 		if window_content_tmp == null:
 			printerr("WINDOW HAS NO CONTENT!")
 			return
-			
+
 	window_content = window_content_tmp
 	window_content.global_position = content_placeholder.global_position
 	window_content.size = content_placeholder.size
@@ -154,7 +155,7 @@ func _on_corner_bot_left_gui_input(event: InputEvent) -> void:
 
 func _on_item_rect_changed() -> void:
 	if not self.get_viewport():
-		return 
+		return
 	if not Engine.is_editor_hint():
 		self.position.x = clamp(self.position.x, 0 , self.get_viewport().size.x - self.size.x)
 		self.position.y = clamp(self.position.y, 0 , self.get_viewport().size.y - self.size.y)
@@ -162,7 +163,7 @@ func _on_item_rect_changed() -> void:
 		self.size.y = clamp(self.size.y, 0 , self.get_viewport().size.y )
 		#print("checkboundry")
 	update_content_placement()
-	
+
 func _on_child_order_changed() -> void:
 	_update_content_placement_deferred()
 

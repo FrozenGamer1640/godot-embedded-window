@@ -5,7 +5,6 @@ func _on_popup_pressed() -> void:
 	$PinnableControlNodeWindow.popup()
 	$PinnableControlNodeWindow.popup_rect = Rect2i(100,100,400,500)
 	$ControlNodeWindow.popup()
-	
 
 # close
 func _on_close_all_windows_pressed() -> void:
@@ -20,4 +19,3 @@ func _on_swap_content_pressed() -> void:
 	$ControlNodeWindow.remove_child(tmp2)
 	$PinnableControlNodeWindow.add_child(tmp2)
 	$ControlNodeWindow.add_child(tmp)
-	
